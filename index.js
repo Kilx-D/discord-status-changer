@@ -33,7 +33,12 @@ function sleep(ms) {
  }
 
 async function start() {
-    const browser = await pup.launch({headless: false, executablePath: '/usr/bin/chromium-browser',  args: [ '--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote' ], slowMo: 100});
+    const browser = await pup.launch({
+        headless: false,
+        //comment below if running anything other than linux
+         executablePath: '/usr/bin/chromium-browser',  
+         args: [ '--disable-gpu', '--disable-setuid-sandbox', '--no-sandbox', '--no-zygote' ], 
+         slowMo: 100});
     const page = await browser.newPage();
     await page.goto("https://discord.com/login");
     await page.type('input[name="email"]', process.env.EMAIL);
